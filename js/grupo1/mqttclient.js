@@ -122,5 +122,6 @@ function testMqtt(){
 	console.log("hi");
 }
 function initMqtt() {
+    console.log
 	client.connect(options);
 }
