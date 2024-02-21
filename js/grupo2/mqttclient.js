@@ -22,14 +22,11 @@ client.onConnectionLost = function (responseObject) {
 /*################################################################################################*/
 /*####################################### LLEGA EL MENSAJE########################################*/
 /*################################################################################################*/
-let prevCPUValue = 0;
-let prevMemoryValue = 0;
-let prevDiskValue = 0;
-let prevRecepcionValue = 0;
+
 
 client.onMessageArrived = function (message) {
 	let destination = message.destinationName;
-	if (destination === "probar_1") {
+	if (destination === "victor") {
         let response = JSON.parse(message.payloadString);
         dataFormat = response;
         let dataCPU = dataFormat.CPU;
@@ -40,7 +37,7 @@ client.onMessageArrived = function (message) {
         //info pc
         document.getElementById("arquitecturaValue").innerText = response.Arquitectura;
         document.getElementById("sistemaValue").innerText = response.Sistema;
-        document.getElementById("ramValue").innerText = response.Ram;
+        document.getElementById("ramValue").innerText =  cpu_frequency.current ;
         document.getElementById("procesadorValue").innerText = response.Procesador;
         document.getElementById("almacenamientoValue").innerText = response.Almacenamiento;
 
@@ -110,7 +107,7 @@ var options = {
 	onSuccess: function () {
 		console.log("mqtt connected");
 		// Connection succeeded; subscribe to our topic, you can add multile lines of these
-		client.subscribe("probar_1", { qos: 1 });
+		client.subscribe("victor", { qos: 1 });
 	},
 	onFailure: function (message) {
 		console.log("Connection failed: " + message.errorMessage);
