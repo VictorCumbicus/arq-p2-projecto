@@ -30,22 +30,29 @@ client.onMessageArrived = function (message) {
         let response = JSON.parse(message.payloadString);
         dataFormat = response;
         let dataCPU = dataFormat.CPU;
-        let dataMemoria = dataFormat.Memoria;
-        let dataDisco = dataFormat.Disco;
-        let dataRecepcion = dataFormat.Recepcion;
+		let dataAlmc = dataFormat.Alc;
+		let dataTpt = dataFormat.Tpt;
+		let dataCache = dataFormat.Cache;
         
         //info pc
-        document.getElementById("arquitecturaValue").innerText = response.Arquitectura;
-        document.getElementById("sistemaValue").innerText = response.Sistema;
-        document.getElementById("ramValue").innerText =  cpu_frequency.current ;
-        document.getElementById("procesadorValue").innerText = response.Procesador;
-        document.getElementById("almacenamientoValue").innerText = response.Almacenamiento;
+        let dateCPU = dataCPU + ' %';
+        document.getElementById('cpuValue').innerText = dateCPU;
+		//RAM
+		let dateAlmc = dataAlmc.toLocaleString() + ' %';
+		document.getElementById('almcValue').innerText = dateAlmc;
+		//Dico en uso
+		let dateTpt = dataTpt + ' %';
+		document.getElementById('tptValue').innerText = dateTpt;
+		//Cache
+		let dateCache = dataCache.toLocaleString() + ' %';
+		document.getElementById('cacheValue').innerText = dateCache;
+
 
         // Calcular la diferencia con respecto al valor anterior
-        let diffCPU = dataCPU - prevCPUValue;
-        let diffMemory = dataMemoria - prevMemoryValue;
-        let diffDisk = dataDisco - prevDiskValue;
-        let diffRecepcion = dataRecepcion - prevRecepcionValue;
+        let diffCPU = dataCPU - prevcpuValue;
+        let diffAlmc = dataAlmc - prevalmcValue;
+        let diffTpt = dataTpt - prevtptValue;
+        let diffCache = dataCache - prevcacheValue;
 
         // Calcular el porcentaje de cambio
         let percentageCPU = calculatePercentage(diffCPU, prevCPUValue);
@@ -55,9 +62,9 @@ client.onMessageArrived = function (message) {
 
         // Actualizar los valores en tiempo real en la página
         document.getElementById("cpuValue").innerText = dataCPU;
-        document.getElementById("memoryValue").innerText = dataMemoria;
-        document.getElementById("diskValue").innerText = dataDisco;
-        document.getElementById("RecepcionValue").innerText = dataRecepcion;
+        document.getElementById("almcValue").innerText = dataAlmc;
+        document.getElementById("tptValue").innerText = dataTpt;
+        document.getElementById("cacheValue").innerText = dataCache;
 
         // Actualizar los porcentajes en la página
         document.getElementById("cpuPercentage").innerHTML = getColoredPercentage(percentageCPU);
@@ -67,9 +74,9 @@ client.onMessageArrived = function (message) {
 
         // Actualizar los valores anteriores con los nuevos valores
         prevCPUValue = dataCPU;
-        prevMemoryValue = dataMemoria;
-        prevDiskValue = dataDisco;
-        prevRecepcionValue = dataRecepcion;
+        prevMemoryValue = dataAlmc;
+        prevDiskValue = dataTpt;
+        prevRecepcionValue = dataCache;
 
         // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
         addData(myChartCPU, dataCPU);
