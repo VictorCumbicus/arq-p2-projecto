@@ -49,16 +49,10 @@ client.onMessageArrived = function (message) {
 
 
         // Calcular la diferencia con respecto al valor anterior
-        let diffCPU = dataCPU - prevcpuValue;
-        let diffAlmc = dataAlmc - prevalmcValue;
-        let diffTpt = dataTpt - prevtptValue;
-        let diffCache = dataCache - prevcacheValue;
+      
 
         // Calcular el porcentaje de cambio
-        let percentageCPU = calculatePercentage(diffCPU, prevCPUValue);
-        let percentageMemory = calculatePercentage(diffMemory, prevMemoryValue);
-        let percentageDisk = calculatePercentage(diffDisk, prevDiskValue);
-        let percentageRecepcion = calculatePercentage(diffRecepcion, prevRecepcionValue);
+        
 
         // Actualizar los valores en tiempo real en la página
         document.getElementById("cpuValue").innerText = dataCPU;
@@ -67,21 +61,12 @@ client.onMessageArrived = function (message) {
         document.getElementById("cacheValue").innerText = dataCache;
 
         // Actualizar los porcentajes en la página
-        document.getElementById("cpuPercentage").innerHTML = getColoredPercentage(percentageCPU);
-        document.getElementById("memoryPercentage").innerHTML = getColoredPercentage(percentageMemory);
-        document.getElementById("diskPercentage").innerHTML = getColoredPercentage(percentageDisk);
-        document.getElementById("RecepcionPercentage").innerHTML = getColoredPercentage(percentageRecepcion);
-
+       
         // Actualizar los valores anteriores con los nuevos valores
-        prevCPUValue = dataCPU;
-        prevMemoryValue = dataAlmc;
-        prevDiskValue = dataTpt;
-        prevRecepcionValue = dataCache;
+        
 
         // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
-        addData(myChartCPU, dataCPU);
-        addData2(myChartMemory, dataMemoria);
-        addData3(myChartDisk, dataDisco);
+        
     }
 };
 
