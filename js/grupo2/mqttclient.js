@@ -24,15 +24,16 @@ client.onConnectionLost = function (responseObject) {
 /*################################################################################################*/
 
 
+
 client.onMessageArrived = function (message) {
 	let destination = message.destinationName;
 	if (destination === "victor") {
         let response = JSON.parse(message.payloadString);
         dataFormat = response;
-        let dataCPU = dataFormat.CPU;
-		let dataAlmc = dataFormat.Alc;
-		let dataTpt = dataFormat.Tpt;
-		let dataCache = dataFormat.Cache;
+        let dataCPU = dataFormat.CPU1;
+		let dataAlmc = dataFormat.Alc1;
+		let dataTpt = dataFormat.Tpt1;
+		let dataCache = dataFormat.Cache1;
         
         //info pc
         let dateCPU = dataCPU + ' %';
@@ -68,31 +69,52 @@ client.onMessageArrived = function (message) {
         // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
         
     }
+    
+    if (destination === "kevin") {
+        let response = JSON.parse(message.payloadString);
+        dataFormat = response;
+        let dataCPU2 = dataFormat.CPU2;
+		let dataAlmc2 = dataFormat.Alc2;
+		let dataTpt2 = dataFormat.Tpt2;
+		let dataCache2 = dataFormat.Cache2;
+        
+        //info pc
+        let dateCPU2 = dataCPU2 + ' %';
+        document.getElementById('cpuValue2').innerText = dateCPU2;
+		//RAM
+		let dateAlmc2 = dataAlmc2.toLocaleString() + ' %';
+		document.getElementById('almcValue2').innerText = dateAlmc2;
+		//Dico en uso
+		let dateTpt2 = dataTpt2 + ' %';
+		document.getElementById('tptValue2').innerText = dateTpt2;
+		//Cache
+		let dateCache2 = dataCache2.toLocaleString() + ' %';
+		document.getElementById('cacheValue2').innerText = dateCache2;
+
+
+        // Calcular la diferencia con respecto al valor anterior
+      
+
+        // Calcular el porcentaje de cambio
+        
+
+        // Actualizar los valores en tiempo real en la página
+        document.getElementById("cpuValue2").innerText = dataCPU2;
+        document.getElementById("almcValue2").innerText = dataAlmc2;
+        document.getElementById("tptValue2").innerText = dataTpt2;
+        document.getElementById("cacheValue2").innerText = dataCache2;
+
+        // Actualizar los porcentajes en la página
+       
+        // Actualizar los valores anteriores con los nuevos valores
+        
+
+        // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
+        
+    }
 };
 
-// Función para calcular el porcentaje de cambio
-function calculatePercentage(diff, prevValue) {
-    if (prevValue === 0) {
-        return "0"; // Si el valor anterior es cero, el porcentaje de cambio es cero
-    }
 
-    let percentage = ((diff / prevValue) * 100).toFixed(2);
-    if (isFinite(percentage)) {
-        return percentage >= 0 ? "+" + percentage : percentage;
-    } else {
-        return "0";
-    }
-}
-// Función para obtener el porcentaje coloreado
-function getColoredPercentage(percentage) {
-    if (parseFloat(percentage) > 0) {
-        return '<span style="color: green;">' + percentage + '%</span>';
-    } else if (parseFloat(percentage) < 0) {
-        return '<span style="color: red;">' + percentage + '%</span>';
-    } else {
-        return percentage + '%';
-    }
-}
 
 var options = {
 	timeout: 3,
@@ -100,11 +122,16 @@ var options = {
 		console.log("mqtt connected");
 		// Connection succeeded; subscribe to our topic, you can add multile lines of these
 		client.subscribe("victor", { qos: 1 });
+        console.log("mqtt connected");
+		// Connection succeeded; subscribe to our topic, you can add multile lines of these
+		client.subscribe("kevin", { qos: 1 });
 	},
 	onFailure: function (message) {
 		console.log("Connection failed: " + message.errorMessage);
 	},
 };
+
+
 
 
 function testMqtt(){
