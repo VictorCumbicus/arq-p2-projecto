@@ -153,6 +153,12 @@ var options = {
         console.log("mqtt connected");
 		// Connection succeeded; subscribe to our topic, you can add multile lines of these
 		client.subscribe("kevin", { qos: 1 });
+		console.log("mqtt connected");
+		// Connection succeeded; subscribe to our topic, you can add multile lines of these
+		client.subscribe("david", { qos: 1 });
+        console.log("mqtt connected");
+		// Connection succeeded; subscribe to our topic, you can add multile lines of these
+		client.subscribe("ivan", { qos: 1 });
 	},
 	onFailure: function (message) {
 		console.log("Connection failed: " + message.errorMessage);
