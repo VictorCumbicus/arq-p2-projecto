@@ -45,7 +45,6 @@ function actualizarDatosTabla1() {
         table1.clear().rows.add(dataSet1).draw();
     });
 }
-
 setInterval(actualizarDatosTabla1, 30000);
 
 var dataSet2 = [];
@@ -81,7 +80,6 @@ function actualizarDatosTabla2() {
         table2.clear().rows.add(dataSet2).draw();
     });
 }
-
 setInterval(actualizarDatosTabla2, 30000);
 var dataSet3 = [];
 var table3 = $("#tablaProductos2").DataTable({
@@ -100,8 +98,7 @@ var table3 = $("#tablaProductos2").DataTable({
 });
 
 function actualizarDatosTabla3() {
-    var coleccionProductos3 = db.ref().child("datoscompuG4").child("tabla3");
-    coleccionProductos3.limitToLast(10).once("value", (snapshot) => {
+    coleccionProductos.limitToLast(10).once("value", (snapshot) => {
         dataSet3 = [];
         snapshot.forEach((childSnapshot) => {
             var Id = childSnapshot.child("id3").val();
@@ -137,8 +134,7 @@ var table4 = $("#tablaProductos3").DataTable({
 });
 
 function actualizarDatosTabla4() {
-    var coleccionProductos4 = db.ref().child("datoscompuG4").child("tabla4");
-    coleccionProductos4.limitToLast(10).once("value", (snapshot) => {
+    coleccionProductos.limitToLast(10).once("value", (snapshot) => {
         dataSet4 = [];
         snapshot.forEach((childSnapshot) => {
             var Id = childSnapshot.child("id4").val();
