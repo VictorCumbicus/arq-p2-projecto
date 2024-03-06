@@ -48,25 +48,11 @@ client.onMessageArrived = function (message) {
 		let dateCache = dataCache.toLocaleString() + ' %';
 		document.getElementById('cacheValue').innerText = dateCache;
 
-
-        // Calcular la diferencia con respecto al valor anterior
-      
-
-        // Calcular el porcentaje de cambio
-        
-
         // Actualizar los valores en tiempo real en la página
         document.getElementById("cpuValue").innerText = dataCPU;
         document.getElementById("almcValue").innerText = dataAlmc;
         document.getElementById("tptValue").innerText = dataTpt;
         document.getElementById("cacheValue").innerText = dataCache;
-
-        // Actualizar los porcentajes en la página
-       
-        // Actualizar los valores anteriores con los nuevos valores
-        
-
-        // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
         
     }
     
@@ -91,25 +77,67 @@ client.onMessageArrived = function (message) {
 		let dateCache2 = dataCache2.toLocaleString() + ' %';
 		document.getElementById('cacheValue2').innerText = dateCache2;
 
-
-        // Calcular la diferencia con respecto al valor anterior
-      
-
-        // Calcular el porcentaje de cambio
-        
-
         // Actualizar los valores en tiempo real en la página
         document.getElementById("cpuValue2").innerText = dataCPU2;
         document.getElementById("almcValue2").innerText = dataAlmc2;
         document.getElementById("tptValue2").innerText = dataTpt2;
         document.getElementById("cacheValue2").innerText = dataCache2;
-
-        // Actualizar los porcentajes en la página
-       
-        // Actualizar los valores anteriores con los nuevos valores
         
+    }
+	if (destination === "david") {
+        let response = JSON.parse(message.payloadString);
+        dataFormat = response;
+        let dataCPU3 = dataFormat.CPU3;
+		let dataAlmc3 = dataFormat.Alc3;
+		let dataTpt3 = dataFormat.Tpt13;
+		let dataCache3 = dataFormat.Cache3;
+        
+        //info pc
+        let dateCPU3 = dataCPU3 + ' %';
+        document.getElementById('cpuValue3').innerText = dateCPU3;
+		//RAM
+		let dateAlmc3 = dataAlmc3.toLocaleString() + ' %';
+		document.getElementById('almcValue3').innerText = dateAlmc3;
+		//Dico en uso
+		let dateTpt3 = dataTpt3 + ' %';
+		document.getElementById('tptValue3').innerText = dateTpt3;
+		//Cache
+		let dateCache3 = dataCache3.toLocaleString() + ' %';
+		document.getElementById('cacheValue3').innerText = dateCache3;
 
-        // Cargar datos CPU, Memoria y Almacenamiento en las gráficas
+        // Actualizar los valores en tiempo real en la página
+        document.getElementById("cpuValue3").innerText = dataCPU3;
+        document.getElementById("almcValue3").innerText = dataAlmc3;
+        document.getElementById("tptValue3").innerText = dataTpt3;
+        document.getElementById("cacheValue3").innerText = dataCache3;
+
+    }
+	if (destination === "ivan") {
+        let response = JSON.parse(message.payloadString);
+        dataFormat = response;
+        let dataCPU4 = dataFormat.CPU4;
+		let dataAlmc4 = dataFormat.Alc4;
+		let dataTpt4 = dataFormat.Tpt4;
+		let dataCache4 = dataFormat.Cache4;
+        
+        //info pc
+        let dateCPU4 = dataCPU4 + ' %';
+        document.getElementById('cpuValue4').innerText = dateCPU4;
+		//RAM
+		let dateAlmc4 = dataAlmc4.toLocaleString() + ' %';
+		document.getElementById('almcValue4').innerText = dateAlmc4;
+		//Dico en uso
+		let dateTpt4 = dataTpt4 + ' %';
+		document.getElementById('tptValue4').innerText = dateTpt4;
+		//Cache
+		let dateCache4 = dataCache4.toLocaleString() + ' %';
+		document.getElementById('cacheValue4').innerText = dateCache4;
+
+        // Actualizar los valores en tiempo real en la página
+        document.getElementById("cpuValue4").innerText = dataCPU4;
+        document.getElementById("almcValue4").innerText = dataAlmc4;
+        document.getElementById("tptValue4").innerText = dataTpt4;
+        document.getElementById("cacheValue4").innerText = dataCache4;
         
     }
 };
